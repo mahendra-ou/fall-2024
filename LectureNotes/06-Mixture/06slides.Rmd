@@ -229,7 +229,7 @@ P_{ij}\left(X,Z;\beta,\mu,\sigma\right)&= \int\frac{\exp\left(X_{i}\left(\beta_{
 
 # Dynamic Selection
 
-- Let $Y_{1t}$ denote the choice and $Y_{2t}$ denote the outcome
+- Let $Y_{2t}$ denote the choice and $Y_{1t}$ denote the outcome
 
 -  The assumption on the previous slide means the joint likelihood is separable:
 \begin{align*}
@@ -311,7 +311,7 @@ where $q_{is}$ is the probability that $i$ belongs to group $s$
 
 - Stage 1 of M-step: estimate $\ell(Y_{1t}|X_{1t},\alpha_1,s)$ weighting by the $q$'s
 
-- Stage 2 of M-step: estimate $\ell(Y_{2t}|X_{1t},\alpha_1,s)$ weighting by the $q$'s
+- Stage 2 of M-step: estimate $\ell(Y_{2t}|X_{2t},\alpha_1,s)$ weighting by the $q$'s
 
 - E-step: update the $q$'s by calculating
 \begin{align*}
@@ -343,6 +343,39 @@ q_{is}=&\frac{\pi_s\prod_t\mathcal{L}(Y_{1t}|X_{1t},\alpha_1,s)\mathcal{L}(Y_{2t
 
 ---
 
+# Maximization Minorization (MM) Algorithm
+
+- See `r Citet(biblio,"james2017")`
+
+- Alternative to EM algorithm for estimating mixed logit models
+
+- Addresses key limitation of EM: repeated numerical optimization
+
+- Uses a .hi[globally concave] surrogate function with closed-form solution
+
+- Significantly faster than EM in many cases
+
+- Allows for continuously distributed unobserved heterogeneity
+
+---
+
+# Advantages of MM Algorithm
+
+- Simple implementation
+
+- Low cost per iteration
+
+- No need to store entire simulated dataset
+
+- Easily parallelizable
+
+- Effective for models with many fixed coefficients or repeated observations
+
+- Can be 5-8 times faster than EM and competitive with quasi-Newton methods
+
+
+---
+
 # To Recap
 
 - Why are we doing all of this difficult work?
@@ -354,6 +387,8 @@ q_{is}=&\frac{\pi_s\prod_t\mathcal{L}(Y_{1t}|X_{1t},\alpha_1,s)\mathcal{L}(Y_{2t
 - But introducing preference heterogeneity can make the model intractible
 
 - Discretizing the distribution of heterogeneity and using the EM algorithm can help
+
+- Or use the MM algorithm
 
 - We also need to be mindful of how to compute standard errors of the estimates
 
