@@ -1,4 +1,4 @@
-# problem set 4 solutions
+# problem set 5 solutions
 # Name: Mahendra Jamankar
 
 using Random
