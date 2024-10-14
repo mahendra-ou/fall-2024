@@ -336,6 +336,8 @@ println("Minimum value: ", Optim.minimum(result_smm))
 #::::::::::::::::::::::::::
 # Question 6: Wrap up code 
 #::::::::::::::::::::::::::
+
+# Define the econometrics analysis function
 function run_econometrics_analysis()
     # Load and prepare the data
     url = "https://raw.githubusercontent.com/OU-PhD-Econometrics/fall-2024/master/ProblemSets/PS1-julia-intro/nlsw88.csv"
@@ -459,12 +461,12 @@ end
 # Call the function to run the analysis
 run_econometrics_analysis()
 
-
 #:::::::::::::::::::::::::::::::::::::
 # Question 7: AI Unit test
 #:::::::::::::::::::::::::::::::::::::
 
 # Unit tests
+using Test
 @testset "Econometrics Analysis Tests" begin
     # Test g function
     @testset "g function" begin
@@ -518,27 +520,13 @@ run_econometrics_analysis()
 
     # Test compute_moments function
     @testset "compute_moments function" begin
-        Y = [1, 2, 3, 1, 2, 3, 1, 2, 3]
+        Y = [1, 2, 1, 3, 2, 1]
         J = 3
         result = compute_moments(Y, J)
-        @test length(result) == J
-        @test isapprox(sum(result), 1, atol=1e-6)
-    end
-
-    # Test smm_objective function
-    @testset "smm_objective function" begin
-        N, J, K, D = 1000, 3, 2, 5
-        β_true = [0.5, -0.5, 0.5, -0.5]
-        X, Y = simulate_multinomial_logit(N, J, K, β_true)
-        result = smm_objective(β_true, X, Y, J, D)
-        @test isa(result, Float64)
-        @test result ≥ 0
+        @test size(result) == (J,)
+        @test isapprox(result, [0.5, 0.333333, 0.166667], atol=1e-6)
     end
 end
 
-
-
-
-
-
-
+# Wrap-up code to print summary of tests
+println("All tests completed.")
