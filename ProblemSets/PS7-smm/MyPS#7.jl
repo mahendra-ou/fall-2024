@@ -299,7 +299,7 @@ end
 N = 10000  # Number of observations
 J = 4      # Number of choices (> 2)
 K = 3      # Number of covariates (> 1, including constant)
-D = 10     # Number of simulations for SMM
+D = 5000     # Number of simulations for SMM
 
 # True parameters (K * (J-1) vector)
 β_true = [1.0, -0.5, 0.5, -0.5, 1.0, -1.0, 0.5, -1.0, 1.0]
