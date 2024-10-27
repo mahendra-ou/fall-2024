@@ -2,11 +2,9 @@
 #Name: Mahendra Jamankar
 
 #**************************************************************************
-# Install MultivariateStats if not already installed
+# Load all Packages
 using Pkg
 Pkg.add("MultivariateStats")
-
-# Load all required packages
 using Optim
 using HTTP
 using GLM
@@ -19,12 +17,11 @@ using CSV
 using MultivariateStats
 #*****************************************************************************
 
-
 #*************************************
 # Question1: linear regression model
 #*************************************
 
-# Download and load the dataset
+# load the dataset
 url = "https://raw.githubusercontent.com/OU-PhD-Econometrics/fall-2024/master/ProblemSets/PS8-factor/nlsy.csv"
 df = CSV.read(HTTP.get(url).body, DataFrame)
 
@@ -215,10 +212,8 @@ end
 
 
 #*************************************
-# Question6: 
+# Question6: Full measurment 
 #*************************************
-
-
 # Define measurement system functions
 function create_design_matrices()
     # X_m matrix (measurement equation covariates)
